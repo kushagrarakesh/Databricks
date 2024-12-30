@@ -32,7 +32,7 @@ display(flattened_df)
 jdbc_url = "jdbc:sqlserver://sqldbserver01.database.windows.net:1433;database=hierarchy"
 db_properties = {
     "user": "admina",
-    "password": "Centurylink@123",
+    "password": "XXXXXXXXXXXX",
     "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 }
 
