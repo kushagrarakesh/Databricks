@@ -102,7 +102,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Load the source data (replace '/path/to/source.json' with your actual path)
-source_data = spark.read.json("/path/to/source.json")
+source_data = spark.read.json("/FileStore/rakdataset/parent.json",multiLine="true")
 
 # Flatten the JSON structure
 flattened_df = source_data \
@@ -116,13 +116,12 @@ flattened_df = source_data \
 
 # Display the transformed DataFrame
 flattened_df.show()
-
 # Write the transformed DataFrame to Azure SQL Database
 # Define Azure SQL Database connection properties
-jdbc_url = "jdbc:sqlserver://<your-server-name>.database.windows.net:1433;database=<your-database>"
+jdbc_url = "jdbc:sqlserver://sqldbserver01.database.windows.net:1433;database=hierarchy"
 db_properties = {
-    "user": "<your-username>",
-    "password": "<your-password>",
+    "user": "admina",
+    "password": "Centurylink@123",
     "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 }
 
@@ -130,10 +129,12 @@ db_properties = {
 flattened_df.write \
     .format("jdbc") \
     .option("url", jdbc_url) \
-    .option("dbtable", "target_table") \
+    .option("dbtable", "parentschild") \
     .options(**db_properties) \
     .mode("overwrite") \
     .save()
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Example: Using .saveAsTable() in Delta Lake~~~~~~~~~~~~~~~~~~~
 from pyspark.sql import SparkSession
 # Initialize Spark session with Delta Lake configuration
