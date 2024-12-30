@@ -1,0 +1,21 @@
+[
+  {
+    "patient_id": 1,
+    "name": "John Doe",
+    "age": 45,
+    "gender": "Male",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zip_code": "10001"
+    },
+    "medical_history": [
+      {
+        "condition": "Diabetes",
+        "diagnosis_date": "2020-05-10",
+        "medications": ["Metformin", "Insulin"]
+      }
+    ]
+  }
+]
